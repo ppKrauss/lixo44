@@ -1,5 +1,14 @@
 ## Endereços de Belo Horizonte
+Na pasta [geoaddress](geoaddress) encontram-se todos os pontos de localização geográfica com respectivos dados de endeço.
+Por exemplo a *"RUA DOS INDEPENDENTES, 26"* encontra-se no arquivo [`pts_7h2wjv.geojson`](geoaddress/pts_7h2wjv.geojson) da pasta.
+O nome do arquivo pode ser lido da seguinte forma:
+* prefixo `pts_` e extensão `.geojson` indica que são pontos formatados em GeoJSON.
+* `7h2wjv` é o "prefixo Geohash" de todos os pontos contidos no arquivo.
 
+Para saber em qual  "prefixo Geohash" se encontra o ponto que deseja, veja as instruções abaixo e use o aplicativo de Geohash https://www.movable-type.co.uk/scripts/geohash.html
+
+
+## Localização dos quadrantes Geohash
 O município de Belo Horizonte (MG) está contido no Geohash `7h2`: 
 ![](assets/BeloHorzinte-GeohashCover.png)
 
