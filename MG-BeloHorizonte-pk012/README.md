@@ -25,20 +25,17 @@ O resultado foi a distribuição de arquivos GeoJSON com tamanhos variando de 50
 
 ## Problemas com os endereços fornecidos
 
-![](assets/dualAddressIllustration01-BR-MG-BeloHorizonte.png)
-![](assets/dualAddressIllustration02-BR-MG-BeloHorizonte.png)
-![](assets/dualAddressIllustration03-BR-MG-BeloHorizonte.png)
-![](assets/dualAddressIllustration04-BR-MG-BeloHorizonte.png)
-![](assets/dualAddressIllustration05-BR-MG-BeloHorizonte.png)
 
-
-
-Casos aglomerados:
+Casos aglomerados: ver [geoaddress/pts_7h2w.geojson](geoaddress/pts_7h2w.geojson)
 
 Geohash | Via | Numeração predial
 --------|------|--------------------
 7h2wjgqf4 | RUA CORONEL EUDOXIO JOVIANO | 70,72
 7h2wjgqhh | RUA JOANICO CIRILO DE ABREU    | "154A",231
+
+![](assets/dualAddressIllustration01-BR-MG-BeloHorizonte.png)
+![](assets/dualAddressIllustration02-BR-MG-BeloHorizonte.png)
+
 
 Casos descartados e relatados para correção no doador, ou escolha da rua mais provável:
 
@@ -49,7 +46,11 @@ Geohash | Vias | Numeração predial
 7h2wjujww | "BEC. BEIJA-FLOR", "BEC. PARDAL"     | 64
 7h2wjvepz | "RUA DARIO LUIZ DE BRITO", "RUA WILIAM DIRCEU ZUCCHERATE" | 278A,278B,278C
 
-O último caso, geohash 7h2wjvepz, é relativo a uma esquina, onde a numeração comum (278) deveria ser referente a uma só rua.
+![](assets/dualAddressIllustration04-BR-MG-BeloHorizonte.png)
+![](assets/dualAddressIllustration03-BR-MG-BeloHorizonte.png)
+![](assets/dualAddressIllustration05-BR-MG-BeloHorizonte.png)
+
+O último caso, Geohash `7h2wjvepz`, é relativo a uma esquina, onde a numeração comum (278) deveria ser referente a uma só rua.
 
 ## Proporção geral de duplicados
 
@@ -93,7 +94,6 @@ file_id | is_dup | n_ghs  | n_tot
 1 | t      |  41202 |  86394
 1 | f      | 649500 | 649500
 
-
 file_id | is_dup | n_cases | n_ghs  | n_tot  
 --------|--------|---------|--------|--------
 1 | f      |       1 | 649500 | 649500
@@ -102,3 +102,26 @@ file_id | is_dup | n_cases | n_ghs  | n_tot
 
 Ver proporções neste ultimo, mas não parece grande
 
+## Busca por filesystem
+
+Retomando o exemplo do endereço localizado em Geohash `7h2wjgqf4`, reparamos que "casa" com o prefixo do arquivo `pts_7h2w.geojson`.
+Então se for uma rua pequena ṕoderemos localizar o ponto com `grep "EUDOXIO JOVIANO" pts_7h2w.geojson`. O resultado todavia foram 81 endereços &mdash; como temos um endereço por linha o resultado 81 vem de `grep "EUDOXIO JOVIANO" pts_7h2w.geojson | wc -l`.
+
+Como o Geohash do exemplo corresponde aproximadamente à Geo URI `geo:-20.0208,-44.03481`, usando um trecho da longitude como discrimiante, teremos:
+
+```sh
+grep "EUDOXIO JOVIANO" pts_7h2w.geojson | grep 44.03481
+```
+O que resulta na linha GeoJSON
+```json
+{"type": "Point", "properties": {"via_name": "RUA CORONEL EUDOXIO JOVIANO", "house_numbers": ["70", "72"]}, "coordinates": [-44.034811, -20.020837]} 
+```
+
+Se estivessemos em dúvida poderíamos ainda tentar a busca por todos os arquivos, e o resultado neste caso ainda seria o mesmo:
+
+```sh
+grep "EUDOXIO JOVIANO" *.geojson | grep 44.03481  # retorna 1 endereço
+grep "JOANICO CIRILO DE ABREU" *.geojson| awk '{print $1;}' | uniq # retorna os nomes dos arquivos que contém  rua
+```
+
+Os comandos Unix portanto podem ser úteis quando for necessária uma avaliação rápida dos arquivos, antes de carregar em base de dados ou QGIS.
