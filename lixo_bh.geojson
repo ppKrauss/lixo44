@@ -4,13 +4,13 @@
  "features": [
   {"type": "Point", "properties": {"address": {"x":"RUA CARMELITA COELHO DA ROCHA, 180","y":3232},"x":"teste"}, "coordinates": [-44.036092, -20.021231]},
   {"type": "Point", "properties": {"address": "RUA CARMELITA COELHO DA ROCHA, 190"}, "coordinates": [-44.036558, -20.021156]},
-  {"type": "Point", "properties": {"tile":"titulo local","name":"nome local","address": "RUA LINDA BATISTA, 39"}, "coordinates": [-44.036457, -20.021158]},
+  {"type": "Point", "properties": {"tile":"titulo local","name":"nome local","x":[1,2,3],"address": "RUA LINDA BATISTA, 39"}, "coordinates": [-44.036457, -20.021158]},
   {"type": "Point", "properties": {"address": "RUA LINDA BATISTA, 16"}, "coordinates": [-44.03637, -20.020981]},
   {"type": "Point", "properties": {"address": "RUA LINDA BATISTA, 134"}, "coordinates": [-44.03641, -20.020898]},
   {"type": "Point", "properties": {"address": "RUA LINDA BATISTA, 36"}, "coordinates": [-44.036226, -20.021171]},
   {"type": "Point", "properties": {"address": "RUA LINDA BATISTA, 35"}, "coordinates": [-44.03619, -20.021194]},
   {"type": "Point", "properties": {"address": "RUA LINDA BATISTA, 22"}, "coordinates": [-44.036278, -20.021087]},
   {"type": "Point", "properties": {"address": "RUA LINDA BATISTA, 21"}, "coordinates": [-44.036243, -20.021109]},
-  {"type": "Point", "properties": {"tile":"titulo local","name":"nome local","address": {"x":"RUA LINDA BATISTA, 18","y":111},"y":"teste"}, "coordinates": [-44.03629, -20.020978]}
+  {"type": "Point", "properties": {"tile":"titulo local","address": {"x":"RUA LINDA BATISTA, 18","y":111},"y":["teste1","teste2",66]}, "coordinates": [-44.03629, -20.020978]}
  ]
 }
